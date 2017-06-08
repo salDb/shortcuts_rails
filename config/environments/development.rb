@@ -1,4 +1,5 @@
 Rails.application.configure do
+  ENV["AUTH_SECRET"] = "592c9bef5135b5781422fc090a5433368959a875296430d9f7154d3225b4524b4e03df8881c5fa350f9ecac1d6d6390c682ab951ce249ea89bcaaf7118ae82d2"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

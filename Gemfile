@@ -10,7 +10,8 @@ gem 'puma', '~> 3.7'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'mysql2'
 gem 'paperclip', '~> 5.0.0'
-
+gem 'jwt'
+gem 'bcrypt'
 
 
 group :development, :test do 
