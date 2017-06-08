@@ -1,8 +1,9 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :update, :destroy]
-   
+  before_action :authenticate
+
   def index
-    @apps = App.all
+    @apps = current_user.apps.all
 
     render json: @apps
   end
@@ -12,31 +13,45 @@ class AppsController < ApplicationController
   end
    
   def create
-    @app = App.new(app_params)
+    @app = current_user.apps.new(app_params)
 
     if @app.save
-      render json: @app, status: :created, location: @app
+      render status: 200, json: {
+          message: "Successfully created new app",
+          app: @app
+      }
     else
-      render json: @app.errors, status: :unprocessable_entity
+      render status: 422, json: {
+          message: "Unsuccessful, There was #{pluralize(@app.errors.size, "error")}",
+          errors: @app.errors.full_messages,
+      }
     end
   end
    
   def update
     if @app.update(app_params)
-      render json: @app
+      render status: 200, json: {
+          message: "Successfully updated app",
+          app: @app
+      }
     else
-      render json: @app.errors, status: :unprocessable_entity
+      render status: 422, json: {
+          message: "Unsuccessful, There was #{pluralize(@app.errors.size, "error")}",
+          errors: @app.errors.full_messages,
+      }
     end
   end
    
   def destroy
     @app.destroy
+    render status: 200, json: {
+        message: "Successfully deleted app"
+    }
   end
 
   private
-     
     def set_app
-      @app = App.find(params[:id])
+      @app = current_user.apps.find(params[:id])
     end
      
     def app_params
