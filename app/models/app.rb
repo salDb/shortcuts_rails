@@ -1,5 +1,6 @@
 class App < ApplicationRecord
   belongs_to :user
+  has_many :shortcuts
 
   has_attached_file :image
   validates_attachment :image, presence: true

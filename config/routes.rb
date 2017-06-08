@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   put "/update_account" => "users#update"
   post "/login" => "sessions#create"
 
-  resources :apps
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :apps do
+    resources :shortcuts, except: [:show]
+  end
 end

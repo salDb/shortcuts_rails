@@ -1,10 +1,8 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :update, :destroy]
-  before_action :authenticate
 
   def index
     @apps = current_user.apps.all
-
     render json: @apps
   end
 
@@ -52,6 +50,9 @@ class AppsController < ApplicationController
   private
     def set_app
       @app = current_user.apps.find(params[:id])
+      unless @app
+        render_404
+      end
     end
      
     def app_params
