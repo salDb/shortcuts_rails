@@ -2,7 +2,11 @@ class ShortcutsController < ApplicationController
   before_action :set_app
 
   def index
-    shortcuts = @app.shortcuts
+    if params[:query]
+      shortcuts = @app.shortcuts.where("action_name LIKE ?", "%#{params[:query]}%")
+    else
+      shortcuts = @app.shortcuts
+    end
     render json: shortcuts
   end
 
@@ -21,7 +25,7 @@ class ShortcutsController < ApplicationController
       }
     end
   end
-  
+
   def update
     shortcut = @app.shortcuts.find(params[:id])
     if shortcut.update(shortcut_params)
@@ -46,14 +50,14 @@ class ShortcutsController < ApplicationController
   end
 
   private
-    def set_app
-      @app = current_user.apps.find(params[:app_id])
-      unless @app
-        render_404
-      end
+  def set_app
+    @app = current_user.apps.find(params[:app_id])
+    unless @app
+      render_404
     end
+  end
 
-    def shortcut_params
-      params.permit(:action_name, :first_action, :second_action, :third_action, :fourth_action)
-    end
+  def shortcut_params
+    params.permit(:action_name, :first_action, :second_action, :third_action, :fourth_action)
+  end
 end

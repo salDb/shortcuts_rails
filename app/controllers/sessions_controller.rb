@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       jwt = Auth.issue({user: user.id})
       render json: {
           message: "Successfully logged in",
-          jwt: jwt
+          auth_token: jwt
       }
     else
       render json: {message: "Could not autheticate user"}, status: 401

@@ -2,14 +2,18 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :update, :destroy]
 
   def index
-    @apps = current_user.apps.all
-    render json: @apps
+    if params[:query]
+      @apps = current_user.apps.where("name LIKE ?", "%#{params[:query]}%")
+    else
+      @apps = current_user.apps
+    end
+    render :json => @apps.to_json(only: [:id, :name], methods: [:image_url])
   end
 
   def show
     render json: @app
   end
-   
+
   def create
     @app = current_user.apps.new(app_params)
 
@@ -25,7 +29,7 @@ class AppsController < ApplicationController
       }
     end
   end
-   
+
   def update
     if @app.update(app_params)
       render status: 200, json: {
@@ -39,7 +43,7 @@ class AppsController < ApplicationController
       }
     end
   end
-   
+
   def destroy
     @app.destroy
     render status: 200, json: {
@@ -48,14 +52,14 @@ class AppsController < ApplicationController
   end
 
   private
-    def set_app
-      @app = current_user.apps.find(params[:id])
-      unless @app
-        render_404
-      end
+  def set_app
+    @app = current_user.apps.find(params[:id])
+    unless @app
+      render_404
     end
-     
-    def app_params
-      params.permit(:name, :image)
-    end
+  end
+
+  def app_params
+    params.permit(:name, :image)
+  end
 end
