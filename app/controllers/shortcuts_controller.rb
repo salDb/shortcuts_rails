@@ -2,11 +2,7 @@ class ShortcutsController < ApplicationController
   before_action :set_app
 
   def index
-    if params[:query]
-      shortcuts = @app.shortcuts.where("action_name LIKE ?", "%#{params[:query]}%")
-    else
-      shortcuts = @app.shortcuts
-    end
+    shortcuts = @app.shortcuts.order(updated_at: :desc)
     render json: shortcuts
   end
 

@@ -5,7 +5,7 @@ class App < ApplicationRecord
   has_attached_file :image, :styles => { :medium => "1000x600#" }
   validates_attachment :image, presence: true
   do_not_validate_attachment_file_type :image
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   def image_url
     image.url(:medium)

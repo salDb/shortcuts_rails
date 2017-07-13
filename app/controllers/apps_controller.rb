@@ -2,11 +2,7 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :update, :destroy]
 
   def index
-    if params[:query]
-      @apps = current_user.apps.where("name LIKE ?", "%#{params[:query]}%")
-    else
-      @apps = current_user.apps
-    end
+    @apps = current_user.apps.order(updated_at: :desc)
     render :json => @apps.to_json(only: [:id, :name], methods: [:image_url])
   end
 
