@@ -7,7 +7,7 @@ class AppsController < ApplicationController
   end
 
   def show
-    render json: @app
+    render json: @app.to_json(only: [:id, :name], methods: [:image_url])
   end
 
   def create
@@ -30,7 +30,7 @@ class AppsController < ApplicationController
     if @app.update(app_params)
       render status: 200, json: {
           message: "Successfully updated app",
-          app: @app
+          app: @app.to_json(only: [:id, :name], methods: [:image_url])
       }
     else
       render status: 422, json: {
