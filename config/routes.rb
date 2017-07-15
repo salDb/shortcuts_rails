@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   put "/update_account" => "users#update"
   post "/login" => "sessions#create"
 
-  resources :apps do
-    resources :shortcuts, except: [:show]
+  resources :apps, :defaults => { :format => :json } do
+    resources :shortcuts, except: [:show], :defaults => { :format => :json }
   end
 end
