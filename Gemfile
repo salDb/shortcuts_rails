@@ -12,6 +12,7 @@ gem 'mysql2'
 gem 'paperclip', '~> 5.0.0'
 gem 'jwt'
 gem 'bcrypt'
+gem 'figaro'
 
 
 group :development, :test do 
