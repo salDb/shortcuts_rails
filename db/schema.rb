@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718075342) do
+ActiveRecord::Schema.define(version: 20170718104624) do
 
   create_table "apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20170718075342) do
     t.bigint "user_id"
     t.integer "app_type"
     t.index ["user_id"], name: "index_apps_on_user_id"
+  end
+
+  create_table "commands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "command_description"
+    t.string "command"
+    t.bigint "app_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_id"], name: "index_commands_on_app_id"
   end
 
   create_table "shortcuts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -44,5 +53,6 @@ ActiveRecord::Schema.define(version: 20170718075342) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "commands", "apps"
   add_foreign_key "shortcuts", "apps"
 end

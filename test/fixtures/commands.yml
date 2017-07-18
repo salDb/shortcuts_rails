@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  command_description: MyString
+  command: MyString
+  app_id: 1
+
+two:
+  command_description: MyString
+  command: MyString
+  app_id: 1

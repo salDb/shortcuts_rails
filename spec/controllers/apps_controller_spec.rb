@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AppsController do
   let!(:user) {FactoryGirl.create(:user)}
-  let!(:app) {FactoryGirl.create(:app, user_id: user.id)}
+  let!(:app) {FactoryGirl.create(:app, user_id: user.id, app_type: 'shortcuts')}
 
   before do
     request.headers['Accept'] = 'application/json'

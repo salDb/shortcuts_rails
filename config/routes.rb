@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   resources :apps, :defaults => { :format => :json } do
     resources :shortcuts, except: [:show], :defaults => { :format => :json }
+    resources :commands, except: [:show], :defaults => { :format => :json }
   end
 end

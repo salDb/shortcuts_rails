@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ShortcutsController do
   let!(:user) {FactoryGirl.create(:user)}
-  let!(:app) {FactoryGirl.create(:app, user_id: user.id)}
+  let!(:app) {FactoryGirl.create(:app, user_id: user.id, app_type: 'shortcuts')}
   let!(:shortcut) {FactoryGirl.create(:shortcut, app_id: app.id)}
 
   before do
