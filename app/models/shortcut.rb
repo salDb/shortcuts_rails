@@ -9,8 +9,8 @@ class Shortcut < ApplicationRecord
   def upcase_shortcut
     self.first_action.upcase!
     self.second_action.upcase!
-    self.third_action.upcase!
-    self.fourth_action.upcase!
+    self.third_action.upcase! unless third_action.blank?
+    self.fourth_action.upcase! unless fourth_action.blank?
   end
-
 end
+
