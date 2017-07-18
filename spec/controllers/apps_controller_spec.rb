@@ -22,25 +22,27 @@ describe AppsController do
 
   it 'should create app' do
     app_params = { name: 'Example App',
-                   image: fixture_file_upload(Rails.root.join('spec', 'fixtures', 'images', 'test2.png'), 'image/png')}
+                   app_type: 'commands',
+                   image: fixture_file_upload(Rails.root.join('spec', 'fixtures', 'images', 'shortcuts.png'), 'image/png')}
     post :create, params: app_params
     expect(response).to have_http_status(200)
     expect(response.body).to include_json(message: 'Successfully created new app')
     expect(response.body).to include_json(app:
-                                 {
-                                      name: 'Example App',
-                                      image_file_name: 'test2.png'
-                                  })
+                                              {
+                                                  name: 'Example App',
+                                                  app_type: 'commands',
+                                                  image_file_name: 'shortcuts.png'
+                                              })
   end
 
   it 'should show app' do
     get :show, params: {id: app.id}
     expect(response).to have_http_status(200)
     expect(response.body).to include_json(
-                                  {
-                                      name: 'App',
-                                      image_url: include('test.png')
-                                  })
+                                 {
+                                     name: 'App',
+                                     image_url: include('test.png')
+                                 })
   end
 
   it 'should update app' do

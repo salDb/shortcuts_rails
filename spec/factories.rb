@@ -9,6 +9,7 @@ FactoryGirl.define do
 
   factory :app do
     name 'App'
+    app_type 'shortcuts'
     image { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'images', 'test.png'), 'image/png') }
     user_id ''
   end

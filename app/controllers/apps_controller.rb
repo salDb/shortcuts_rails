@@ -56,6 +56,6 @@ class AppsController < ApplicationController
   end
 
   def app_params
-    params.permit(:name, :image)
+    params.permit(:name, :image, :app_type)
   end
 end

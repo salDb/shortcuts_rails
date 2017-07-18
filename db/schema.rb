@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608161913) do
+ActiveRecord::Schema.define(version: 20170718075342) do
 
   create_table "apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170608161913) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.bigint "user_id"
+    t.integer "app_type"
     t.index ["user_id"], name: "index_apps_on_user_id"
   end
 
