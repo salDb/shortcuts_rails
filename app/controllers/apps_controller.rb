@@ -2,7 +2,11 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :update, :destroy]
 
   def index
-    @apps = current_user.apps.order(updated_at: :desc)
+    if params[:app_type] == 'shortcuts'
+      @apps = current_user.apps.where(app_type: 'shortcuts').order(updated_at: :desc)
+    else
+      @apps = current_user.apps.where(app_type: 'commands').order(updated_at: :desc)
+    end
     render :json => @apps.to_json(only: [:id, :name], methods: [:image_url])
   end
 
