@@ -2,7 +2,7 @@ class CommandsController < ApplicationController
   before_action :set_app
 
   def index
-    command = Command.all.where(app_id: @app.id)
+    command = Command.all.where(app_id: @app.id).order(updated_at: :desc)
     render json: command
   end
 
