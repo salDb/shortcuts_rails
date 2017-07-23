@@ -17,8 +17,8 @@ describe ShortcutsController do
     expect(response.body).to include_json(
                                  [{
                                       action_name: 'saves a file',
-                                      first_action: 'CTRL',
-                                      second_action: 'S',
+                                      first_action: 'ctrl',
+                                      second_action: 's',
                                       third_action: nil,
                                       fourth_action: nil,
                                   }])
@@ -32,8 +32,8 @@ describe ShortcutsController do
     expect(response.body).to include_json(shortcut:
                                               {
                                                   action_name: 'some action',
-                                                  first_action: 'SHIFT',
-                                                  second_action: 'W',
+                                                  first_action: 'shift',
+                                                  second_action: 'w',
                                                   third_action: nil,
                                                   fourth_action: nil,
                                               })
@@ -47,9 +47,9 @@ describe ShortcutsController do
     expect(response.body).to include_json(shortcut:
                                               {
                                                   action_name: 'new action',
-                                                  first_action: 'CTRL',
-                                                  second_action: 'S',
-                                                  third_action: 'A',
+                                                  first_action: 'ctrl',
+                                                  second_action: 's',
+                                                  third_action: 'a',
                                                   fourth_action: nil,
                                               })
   end

@@ -11,7 +11,7 @@ describe AppsController do
   end
 
   it 'should get index' do
-    get :index
+    get :index, params: { app_type: 'shortcuts' }
     expect(response).to have_http_status(200)
     expect(response.body).to include_json(
                                  [{
