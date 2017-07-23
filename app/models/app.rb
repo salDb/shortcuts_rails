@@ -1,6 +1,7 @@
 class App < ApplicationRecord
   belongs_to :user
   has_many :shortcuts, dependent: :destroy
+  has_many :commands, dependent: :destroy
   enum app_type: { shortcuts: 0, commands: 1 }
 
   has_attached_file :image, :styles => { :medium => "1000x600#" }, :preserve_files => "false"
