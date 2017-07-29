@@ -49,10 +49,8 @@ test:
 #
 production:
   <<: *default
-  host: localhost
-  adapter: postgresql
-  encoding: utf8
-  database: shortcuts_production
+  host: <%= ENV['SHORTCUTS_DATABASE_HOST'] %>
+  database: <%= ENV['SHORTCUTS_DATABASE_NAME'] %>
   pool: 5
-  username: shortcuts
+  username: <%= ENV['SHORTCUTS_DATABASE_USERNAME'] %>
   password: <%= ENV['SHORTCUTS_DATABASE_PASSWORD'] %>
