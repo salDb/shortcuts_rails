@@ -6,7 +6,8 @@ class App < ApplicationRecord
 
   has_attached_file :image, :styles => { :medium => "1000x600#" }, :preserve_files => "false"
   validates_attachment :image, presence: true
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :image,
+                                    content_type: %w(image/jpeg image/png image/jpeg image/gif), :message => "allowed formats are: PNG, JPG, GIF"
   validates :name, presence: true
   validates :app_type, presence: true
   validate :app_type_not_changed
